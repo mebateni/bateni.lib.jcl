@@ -1,0 +1,13 @@
+//MOVE001 JOB (ACCT#),'BATENI',CLASS=A,                          
+//         MSGCLASS=T,MSGLEVEL=(1,1),NOTIFY=&SYSUID,REGION=0M    
+//STEP1 EXEC PGM=ADRDSSU                                         
+//DISK1      DD UNIT=3390,VOL=SER=Z11W05,DISP=SHR                 
+//DISK2      DD UNIT=3390,VOL=SER=Z11DPI,DISP=SHR                 
+//SYSPRINT  DD SYSOUT=T                                          
+//SYSIN     DD *                                                 
+    COPY -                                                       
+      OUTDD(DISK2) -                                              
+      INDD(DISK1) -                                               
+      DS(INC(**)) -                                              
+      DELETE CATALOG                                             
+/*                                                               
